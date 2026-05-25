@@ -61,7 +61,7 @@ class KMeans:
         ##  THIS FUNCTION CAN BE MODIFIED FROM THIS POINT, if needed
         #############################################################
 
-    def distance(X, centroids):
+    def distance(self, X, centroids):
         """
         Calculates Euclidean distance between each point in X and each centroid
         """
@@ -85,6 +85,7 @@ class KMeans:
         else:
        
             idx = [np.random.randint(self.X.shape[0])]
+
             for _ in range(1, self.K):
            
                 dists = self.distance(self.X, self.X[idx])        
@@ -192,7 +193,7 @@ class KMeans:
         return results
    
    
-    def distance(X, C):
+    def distance(self, X, C):
         """
         Calculates the distance between each pixel and each centroid
         Args:
