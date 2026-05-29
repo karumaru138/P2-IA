@@ -64,13 +64,16 @@ def test_knn_distances(train_imgs, train_class_labels, test_imgs, test_class_lab
     results = {}
 
     print(f'--- Testejant distàncies KNN (k={k_value}) ---')
-
+   
+    knn_model = KNN(train_imgs, train_class_labels)
+   
     for metric in metrics:
-        knn_model = KNN(train_imgs, train_class_labels)
+        start_time = time.time()
         predicted_labels = knn_model.predict(test_imgs, k=k_value, distance_metric=metric)
+        exec_time = time.time() - start_time
         accuracy = get_shape_accuracy(predicted_labels, test_class_labels)
-        results[metric] = accuracy
-        print(f'Metric: {metric:10} | Precisió: {accuracy:.2f}%')
+        results[metric] = {'accuracy': accuracy, 'time': exec_time}
+        print(f'Metric: {metric:10} | Precisió: {accuracy:.2f}% | Temps: {exec_time:.4f}s')
     
     return results
 
